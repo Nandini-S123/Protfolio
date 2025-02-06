@@ -1,11 +1,10 @@
-# Use an official Nginx image to serve static files
 FROM nginx:alpine
-
-# Copy the static website files from the current directory to the Nginx server's public directory
-COPY ./ /usr/share/nginx/html
-
-# Expose port 80
+CLOUD COMPUTING LAB UE22CS351
+WORKDIR /usr/share/nginx/html
+RUN rm -rf ./*
+RUN apk add --no-cache git && \
+git clone <Add your repository url here> /temp-repo && \
+cp -r /temp-repo/* . && \
+rm -rf /temp-repo
 EXPOSE 80
-
-# Run Nginx in the foreground
 CMD ["nginx", "-g", "daemon off;"]
